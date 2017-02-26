@@ -1,40 +1,42 @@
- 
-public class Solution {
-    public int countLeaves(TreeNode node) {
-    // Return the number of leaves in the tree to which node points.
-        if (node == null)
-            return 0;
-        else if (node.left == null && node.right == null)
-            return 1;  // Node is a leaf.
-        else
-            return countLeaves(node.left) + countLeaves(node.right);
-    }
-    static int sumOfLeafDepths( TreeNode node, int depth ) {
+
+
+
+
+
+
+# interactive
+# a binary tree node
+class Node:
+    def _init_(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+# a function to check if a given node is leaf or not:
+def isLeaf(node):
+    if node is None:
+        return False
+    if node.left is None and node.right is None:
+        return True
+    return False
+
+# a function to return sum of all leaves in a given binary tree:
+def leavesSum(root):
+    # initialize result
+    res = 0
     
-        if ( node == null ) {
-        // Since the tree is empty and there are no leaves, the sum is zero.
-            return 0;
-        }
-        else if ( node.left == null && node.right == null) {
-        // The node is a leaf, and there are no subtrees of node, so
-        // the sum of the leaf depth is just the depths of this node.
-            return depth;
-        }
-        else {
-        // The node is not a leaf.  Return the sum of the
-        // the depths of the leaves in the subtrees.
-            return sumOfLeafDepths(node.left, depth + 1) + sumOfLeafDepths(node.right, depth + 1);
-        }
-    }
-
-    public static void main(String[] args) {
-           
-        int leafCount = countLeaves(root);
-        int depthSum = sumOfLeafDepths(root,0);
-        double averageDepth = ((double)depthSum) / leafCount;
-        System.out.println("Maximum depth of leaves:  " + depthMax);
-   
-    }
-
+    # update result if root is not None
+    if root is not None:
         
-}
+        if isLeaf(root.left) and isLeaf(root.right):
+            res+=root.left.key
+            res+=root.right.key
+        elif isLeaf(root.left):
+            res+=root.left.key
+        elif isLeaf(root.right):
+            res+=root.right.key
+        else:
+            res+=LeavesSum(root.left)
+        
+        res+=LeavesSum(root.right)
+    
