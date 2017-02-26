@@ -22,9 +22,9 @@ def sumLeavesDepth(root, d):
     elif root.left is None and root.right is None:
         return d + 1
     elif root.left is None:
-        return self.sumLeavesDepth(root, d+1)
+        return self.sumLeavesDepth(root.right, d+1)
     elif root.right is None:
-        return self.sumLeavesDepth(root, d+1)
+        return self.sumLeavesDepth(root.left, d+1)
     
     return self.sumLeavesDepth(root.left) + self.sumLeavesDepth(root.right)
         
