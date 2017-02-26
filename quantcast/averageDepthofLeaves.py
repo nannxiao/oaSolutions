@@ -58,33 +58,27 @@ def averageLeavesDepth(root):
                     res += 1
                 
         return res
-# a function to sum depth of all leaves:
 
+# a function to sum depth of all leaves:
 def maxDepth(self, root):     
      if not root:
          return 0
      
-     tqueue, h = collections.deque(),0
-     tqueue.append(root)
-     while tqueue:
-         nextlevel = collections.deque()
-         while tqueue:
-             front = tqueue.popleft()
-             if front.left:
-                 nextlevel.append(front.left)
-             if front.right:
-                 nextlevel.append(front.right)
-         tqueue = nextlevel
-         h += 1
-     return h
-
-
-
-
-
-
-
-
+     depCounter = collections.deque()
+     q = collections.deque()
+     q.append(root)
+     depCounter.append(1)
+     while q:
+        tempNode = q.popleft()
+        curNodeDepth = q.popleft()
+        if tempNode.left is None and tempNode.right is None:
+            sum += curNodeDepth
+        elif tempNode.left:
+            q.append(tempNode.left)
+            depCounter.append(curNodeDepth + 1)
+        elif tempNode.right:
+            q.append(tempNode.right)
+            depCounter.append(curNodeDepth + 1)
         
-
-
+        return sum
+            
